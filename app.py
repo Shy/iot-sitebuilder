@@ -1,6 +1,7 @@
-from flask import Flask, render_template, url_for, abort
-import contentful
+"""Iot Site Builder app."""
 import os
+from flask import Flask, render_template
+import contentful
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -8,17 +9,29 @@ load_dotenv()
 SPACE_ID = os.getenv('SPACE_ID')
 DELIVERY_API_KEY = os.getenv('DELIVERY_API_KEY')
 
-client = contentful.Client(
+CLIENT = contentful.Client(
     SPACE_ID,
     DELIVERY_API_KEY)
 
-app = Flask(__name__)
+APP = Flask(__name__)
 
-@app.route('/')
-@app.route('/home')
+
+# def format_datetime(value):
+#     """Format date time object using jinja filters"""
+#     return value.strftime('%B %-d, %Y')
+
+
+# APP.jinja_env.filters['datetime'] = format_datetime
+
+
+@APP.route('/')
+@APP.route('/home')
 def index():
-    """index route. Gathers all shows from contentful and uses that to render page"""
-    return render_template("headline.html")
+    """index route. Gathers page from contentful and builds it."""
+    page = CLIENT.entries({'content_type': 'page', 'include': 10})
+    # section_one = CLIENT.entry(page[0].section_one.id)
+    return render_template("headline.html", carousel=page[0].section_one.carousal_item)
+
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    APP.run(debug=True)

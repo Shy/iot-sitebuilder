@@ -30,7 +30,7 @@ def index():
     """index route. Gathers page from contentful and builds it."""
     page = CLIENT.entries({'content_type': 'page', 'include': 10})
     # section_one = CLIENT.entry(page[0].section_one.id)
-    return render_template("headline.html", carousel=page[0].section_one.carousal_item)
+    return render_template("page.html", page=page, carousel=page[0].section_one.carousal_item)
 
 
 if __name__ == '__main__':

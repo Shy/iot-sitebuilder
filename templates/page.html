@@ -1,9 +1,27 @@
 {% extends "layout.html" %}
+{% block title %}
+  {{ page.page_title }}
+{% endblock %}
 {% block page %}
 
   <!-- Section One  -->
-  {% with section_info=section_one %}
-    {% include section_one.section_html %}
+  {% with section_info=page.section_one %}
+    {% include page.section_one.section_html %}
+  {% endwith %}
+
+  <!-- Section Two  -->
+  {% with section_info=page.section_one %}
+    {% include page.section_two.section_html %}
+  {% endwith %}
+
+  <!-- Section Three  -->
+  {% with section_info=page.section_one %}
+    {% include page.section_three.section_html %}
+  {% endwith %}
+
+  <!-- Section Four  -->
+  {% with section_info=page.section_one %}
+    {% include page.section_four.section_html %}
   {% endwith %}
 
 {% endblock %}

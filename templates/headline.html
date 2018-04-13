@@ -1,12 +1,12 @@
  <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-          {% for item in carousel %}
+          {% for item in section_info.carousal_item %}
             <li data-target="#myCarousel" data-slide-to="{{ loop.index -1 }}" {% if loop.index == 1 %} class="active" {% endif %}></li>
           {% endfor %}
         </ol>
 
         <div class="carousel-inner">
-          {% for item in carousel %}
+          {% for item in section_info.carousal_item %}
           <div class="carousel-item {% if loop.index == 1 %}active {% endif %}">
             <img class="{{ loop.index -1 }}-slide" src="https:{{ item.image.url(fm='jpg', q=70) }}" alt="slide {{ loop.index -1 }}">
             <div class="container">

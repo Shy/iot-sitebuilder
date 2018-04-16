@@ -3,12 +3,9 @@
   {{ page.page_title }}
 {% endblock %}
 {% block page %}
-
-
   {% for section in page.sections %}
     {% with section_info=section %}
       {% include section.section_html %}
     {% endwith %}
   {% endfor %}
-
 {% endblock %}

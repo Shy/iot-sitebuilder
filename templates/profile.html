@@ -1,12 +1,17 @@
 <div class="container marketing">
-    <div class="row" style="padding-top: 20px;">
+
         {% for item in section_info.profile_item %}
+        {% if loop.index % 3 == 1 %}
+        <div class="row" style="padding-top: 20px;">
+            {% endif %}
           <div class="col-lg-4">
             <img class="rounded-circle" src="https:{{item.profile_image.url(h=140, w=140)}} " alt="{{ item.heading }} profile image" width="140" height="140">
             <h2>{{ item.heading }}</h2>
             <p>{{ item.paragraph_text }}</p>
-            <p><a class="btn btn-secondary" href="{{ item.button_link }}" role="button">View details »</a></p>
+            <p><a class="btn btn-secondary" href="{{ item.button_link }}" role="button">{{ item.button_text }}</a></p>
           </div><!-- /.col-lg-4 -->
+          {% if loop.index % 3 == 0 %}
+        </div>
+          {% endif %}
         {% endfor %}
-    </div>
 </div>
